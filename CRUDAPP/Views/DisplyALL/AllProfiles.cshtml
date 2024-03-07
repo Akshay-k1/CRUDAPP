@@ -1,0 +1,127 @@
+﻿@model IEnumerable<CRUDAPP.Models.Employee>
+<head>
+	<style>
+	html,
+	body {
+	height: 100%;
+	}
+
+	body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+	}
+
+	.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	}
+
+	table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	}
+
+	th,
+	td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+	}
+
+	th {
+	text-align: left;
+	}
+
+	thead {
+	th{
+	background-color: #55608f;
+	}
+	}
+
+	tbody {
+	tr {
+	&:hover {
+	background-color: rgba(255,255,255,0.3);
+	}
+	}
+	td {
+	position: relative;
+	&:hover {
+	&:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+	background-color: rgba(255,255,255,0.2);
+	z-index: -1;
+	}
+	}
+	}
+	}
+	#up{
+	  color:green;
+	  margin-right:100px;
+	}
+	#del{
+		color:red;
+		text-align:center;
+	}
+	</style>
+</head>
+<div class="container">
+<table>
+			<thead>
+                <tr>
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Age</th>
+
+                    <th>Address</th>
+
+                    <th>Phone</th>
+
+					<th>User Name</th>
+
+					<th>PassWord</th>
+                </tr>
+                </thead>
+    @foreach(var emp in Model)
+    {
+        <tr>
+            <td>@emp.eid</td>
+            <td>@emp.ename</td>
+            <td>@emp.eage</td>
+            <td>@emp.eadd</td>
+            <td>@emp.ephone</td>
+            <td>@emp.eusername</td>
+            <td>@emp.epassword</td>
+        </tr>
+    }
+</div>
+</table>
+<input type="button" id="del" value="Delete" onclick="Deletepage()" />
+@{
+	<script>
+		function Deletepage() {
+			window.location.href = '@Url.Action("Load_Delete", "EMPDelete")';
+		}
+	</script>
+}
+<input type="button" id="bk" value="Back" onclick="Backtopage()" />
+@{
+	<script>
+		function Backtopage() {
+			window.location.href = '@Url.Action("LoginLoad", "EMPLogin")';
+		}
+	</script>
+}

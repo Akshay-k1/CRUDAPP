@@ -1,0 +1,98 @@
+﻿@model CRUDAPP.Models.Employee
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"],
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+            input[type="submit"]:hover,
+            input[type="button"]:hover {
+                background-color: #c82333;
+            }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<form asp-action="Profile_Delete" class="form-horizondal">
+	<div class="form-group">
+		<label class="control-label">
+			USERNAME
+		</label>
+		@Html.TextBoxFor(m=>m.eusername)
+	</div>
+
+	<div class="form-group">
+		<label class="control-label">
+			PASSWORD
+		</label>
+		@Html.TextBoxFor(m=>m.epassword)
+	</div>
+
+	<div>
+		<input type="submit" value="Delete" id="del"/>
+	</div>
+    <div>
+        <input type="button" value="Back" id="prev" onclick="backtolist()"/>
+    </div>
+</form>
+
+@{
+	if (@TempData["msg"] != null)
+	{
+		<script>
+			alert('@TempData["msg"]');
+		</script>
+	}
+}
+@{
+    <script>
+        function backtolist() {
+            window.location.href = '@Url.Action("AllProfiles", "DisplyALL")';
+        }
+    </script>
+}

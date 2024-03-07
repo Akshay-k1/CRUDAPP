@@ -1,0 +1,123 @@
+﻿@model CRUDAPP.Models.Employee
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"],
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"],
+        input[type="button"] {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+            input[type="submit"]:hover,
+            input[type="button"]:hover {
+                background-color: #45a049;
+            }
+
+        #sign {
+            text-align: center;
+            margin-top: 20px;
+            display: block;
+            font-size: 16px;
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<form asp-action="Insert_Click" class="form-horizontal" method="post">
+    <div class="form-group">
+        <label class="control-label">Employee Name</label>
+        <input asp-for="ename" class="form-control" required />
+        <div class="invalid-feedback">Please enter employee name.</div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Employee Age</label>
+        <input asp-for="eage" class="form-control" type="number" min="18" required />
+        <div class="invalid-feedback">Please enter a valid age (minimum 18 years).</div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Employee Address</label>
+        <input asp-for="eadd" class="form-control" required />
+        <div class="invalid-feedback">Please enter employee address.</div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Employee Phone</label>
+        <input asp-for="ephone" class="form-control" required />
+        <div class="invalid-feedback">Please enter employee phone number.</div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Username</label>
+        <input asp-for="eusername" class="form-control" required />
+        <div class="invalid-feedback">Please enter username.</div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input asp-for="epassword" class="form-control" type="password" required />
+        <div class="invalid-feedback">Please enter password.</div>
+    </div>
+
+    <div>
+        <input type="submit" value="Register" class="btn btn-success" />
+    </div>
+</form>
+
+<div>
+	<input type="button" value=" sign up" id="sign" onclick="gotosigning()" />
+</div>
+@{
+	if(TempData["msg"] != null)
+	{
+	<script>
+	alert('@TempData["msg"]');
+		</script>
+	}
+	
+}
+@{
+		<script>
+			function gotosigning() {
+				window.location.href = '@Url.Action("LoginLoad", "EMPLogin")';
+			}
+		</script>
+}

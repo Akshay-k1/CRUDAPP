@@ -1,0 +1,131 @@
+﻿@model CRUDAPP.Models.Employee
+<head>
+	<style>
+	html,
+	body {
+	height: 100%;
+	}
+
+	body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+	}
+
+	.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	}
+
+	table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	}
+
+	th,
+	td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+	}
+
+	th {
+	text-align: left;
+	}
+
+	thead {
+	th{
+	background-color: #55608f;
+	}
+	}
+
+	tbody {
+	tr {
+	&:hover {
+	background-color: rgba(255,255,255,0.3);
+	}
+	}
+	td {
+	position: relative;
+	&:hover {
+	&:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+	background-color: rgba(255,255,255,0.2);
+	z-index: -1;
+	}
+	}
+	}
+	}
+	#up{
+	  color:green;
+	  margin-right:100px;
+	}
+	</style>
+</head>
+<form asp-action="ProfileView" class="form-horizondal">
+	<div class="container">
+		<table>
+			<thead>
+                <tr>
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Age</th>
+
+                    <th>Address</th>
+
+                    <th>Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>@Model.eid</td>
+
+                    <td>@Model.ename</td>
+
+                    <td>@Model.eage</td>
+
+                    <td>@Model.eadd</td>
+
+                    <td>@Model.ephone</td>
+                </tr>
+            </tbody>
+		</table>
+		<div>
+		<input type="button" id="up" value="Update"/>
+		<br />
+        <input type="button" id="bk" value=" SIGN IN" onclick="backtosignin()" style="padding: 10px 20px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s;" />
+		</div>
+	</div>
+	
+</form>
+
+@{
+	<script>
+		document.getElementById("up").addEventListener("click", function () {
+			var employeeId = "@Model.eid";
+			window.location.href = "/EMPUpdate/Load_Update?id=" + employeeId;
+		});
+
+
+	</script>
+
+}
+@{
+	<script>
+		function backtosignin() {
+			window.location.href = '@Url.Action("LoginLoad", "EMPLogin")';
+		}
+	</script>
+}
